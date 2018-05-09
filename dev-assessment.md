@@ -19,9 +19,9 @@ If you have any queries, feel free to post them to d3hiring@gmail.com.
     * Link(s) to the hosted API (if applicable)
     * Instructions for running local instance of your API server; we need to minimally be able to launch and test your solution locally
 2. Please use NodeJS for the backend code.
-3. Please use a MySQL as the database.
+3. Please use MySQL as the database.
 4. Please include unit tests.
-5. If you are selected for a face-to-face interview, you should be prepapred to:
+5. If you are selected for a face-to-face interview, you should be prepared to:
     * Walk through your code to interviewers
     * Explain any design decisions you’ve made
     * Modify the API endpoints, or implement more endpoints
@@ -31,7 +31,7 @@ If you have any queries, feel free to post them to d3hiring@gmail.com.
     * Readability and code cleanliness
     * Secure coding practices
     * Code structure/design, e.g. modularity, testability
-- Your hosted API will be subjected to automated test tools, so **please adhere closely to the given specs**.
+- Your API will be subjected to automated test tools, so **please adhere closely to the given specs**.
     * (Optional) You can provide a Postman collection for the APIs that you've implemented, *but* we can (and likely will) still use our own tools as well to test your API.
 
 ## User stories
