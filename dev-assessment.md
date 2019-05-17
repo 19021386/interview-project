@@ -47,8 +47,8 @@ A teacher can register multiple students. A student can also be registered to mu
   "teacher": "teacherken@gmail.com"
   "students":
     [
-      "studentjon@example.com",
-      "studenthon@example.com"
+      "studentjon@gmail.com",
+      "studenthon@gmail.com"
     ]
 }
 ```
@@ -57,7 +57,7 @@ A teacher can register multiple students. A student can also be registered to mu
 
 * Endpoint: `GET /api/commonstudents`
 * Success response status: HTTP 200
-* Request example 1: `GET /api/commonstudents?teacher=teacherken%40example.com`
+* Request example 1: `GET /api/commonstudents?teacher=teacherken%40gmail.com`
 * Success response body 1:
 ```
 {
@@ -69,7 +69,7 @@ A teacher can register multiple students. A student can also be registered to mu
     ]
 }
 ```
-* Request example 2: `GET /api/commonstudents?teacher=teacherken%40example.com&teacher=teacherjoe%40example.com`
+* Request example 2: `GET /api/commonstudents?teacher=teacherken%40gmail.com&teacher=teacherjoe%40gmail.com`
 * Success response body 2:
 ```
 {
@@ -98,10 +98,10 @@ A notification consists of:
 * the teacher who is sending the notification, and
 * the text of the notification itself.
 
-To receive notifications from e.g. 'teacherken@example.com', a student:
+To receive notifications from e.g. 'teacherken@gmail.com', a student:
 * MUST NOT be suspended,
 * AND MUST fulfill *AT LEAST ONE* of the following:
-    1. is registered with “teacherken@example.com"
+    1. is registered with “teacherken@gmail.com"
     2. has been @mentioned in the notification
 
 The list of students retrieved should not contain any duplicates/repetitions.
@@ -112,8 +112,8 @@ The list of students retrieved should not contain any duplicates/repetitions.
 * Request body example 1:
 ```
 {
-  "teacher":  "teacherken@example.com",
-  "notification": "Hello students! @studentagnes@example.com @studentmiche@example.com"
+  "teacher":  "teacherken@gmail.com",
+  "notification": "Hello students! @studentagnes@gmail.com @studentmiche@gmail.com"
 }
 ```
 * Success response body 1:
@@ -121,17 +121,17 @@ The list of students retrieved should not contain any duplicates/repetitions.
 {
   "recipients":
     [
-      "studentbob@example.com",
-      "studentagnes@example.com", 
-      "studentmiche@example.com"
+      "studentbob@gmail.com",
+      "studentagnes@gmail.com", 
+      "studentmiche@gmail.com"
     ]   
 }
 ```
-In the example above, studentagnes@example.com and studentmiche@example.com can receive the notification from teacherken@example.com, regardless whether they are registered to him, because they are @mentioned in the notification text. studentbob@example.com however, has to be registered to teacherken@example.com.
+In the example above, studentagnes@gmail.com and studentmiche@gmail.com can receive the notification from teacherken@gmail.com, regardless whether they are registered to him, because they are @mentioned in the notification text. studentbob@gmail.com however, has to be registered to teacherken@gmail.com.
 * Request body example 2:
 ```
 {
-  "teacher":  "teacherken@example.com",
+  "teacher":  "teacherken@gmail.com",
   "notification": "Hey everybody"
 }
 ```
@@ -140,7 +140,7 @@ In the example above, studentagnes@example.com and studentmiche@example.com can 
 {
   "recipients":
     [
-      "studentbob@example.com",
+      "studentbob@gmail.com"
     ]   
 }
 ```
