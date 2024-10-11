@@ -1,0 +1,63 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "lib": [
+            "es5",
+            "es6",
+            "dom"
+        ],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+            "@routes/*": [
+                "src/routes/*"
+            ],
+            "@models/*": [
+                "src/db/models/*"
+            ],
+            "@utils/*": [
+                "src/utils/*"
+            ],
+            "@config/*": [
+                "src/config/*"
+            ],
+            "@middleware/*": [
+                "src/middleware/*"
+            ],
+            "@constants/*": [
+                "src/constants/*"
+            ],
+            "@controllers/*": [
+                "src/controllers/*"
+            ],
+            "@services/*": [
+                "src/services/*"
+            ],
+        },
+        "typeRoots": [
+            "./src/types",
+            "./node_modules/@types"
+        ],
+        "resolveJsonModule": true,
+        "outDir": "./dist",
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+    },
+    "include": [
+        "./src/**/*.tsx",
+        "./src/**/*.ts",
+        "./tests/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+    ]
+}
