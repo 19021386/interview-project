@@ -1,3 +1,3 @@
 init
 
-current endpoint: http://localhost/8080 http://localhost:8080:users
+current endpoint: http://localhost:8080 http://localhost:8080/users
