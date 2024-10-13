@@ -15,6 +15,21 @@ module.exports = {
         email: 'teacherjoe@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        email: 'teachertuananh@gmail.com',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'teacherquy@gmail.com',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'teacherhai@gmail.com',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ])
   },

@@ -1,37 +1,30 @@
+import { Op } from 'sequelize'
 import { Teacher } from '@models/Teacher'
 import { Student } from '@models/Student'
-import { HttpException } from '@utils/httpException'
-import { globalErrCode } from '@constants/errorCode'
+
+import { emailRegex } from '@constants/regex'
 
 export const retrieveForNotificationsService = async (
   teacherEmail: string,
   notificationText: string
 ): Promise<string[]> => {
-  const teacher = await Teacher.findByPk(teacherEmail, {
-    include: {
-      model: Student,
-      where: { suspended: false },
-      attributes: ['email'],
-      through: { attributes: [] }
-    }
-  })
-
-  if (!teacher) {
-    throw new HttpException(globalErrCode['TEACHER.0002'])
-  }
-
-  const registeredStudents = teacher.students.map((student) => student.email)
-
-  const mentionedStudents = (notificationText.match(/@\S+@\S+\.\S+/g) || []).map((email) => email.slice(1))
-
-  const allRecipients = [...new Set([...registeredStudents, ...mentionedStudents])]
-
-  const validStudents = await Student.findAll({
+  const mentionedStudents = (notificationText.match(emailRegex) || []).map((email) => email.slice(1))
+  const students = await Student.findAll({
+    include: [
+      {
+        model: Teacher,
+        as: 'teachers',
+        where: { email: teacherEmail },
+        through: { attributes: [] },
+        required: false
+      }
+    ],
     where: {
-      email: allRecipients,
+      [Op.or]: [{ '$teachers.email$': teacherEmail }, { email: { [Op.in]: mentionedStudents } }],
       suspended: false
-    }
+    },
+    attributes: ['email']
   })
 
-  return validStudents.map((student) => student.email)
+  return students.map((student) => student.email)
 }
