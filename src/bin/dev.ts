@@ -1,36 +1,35 @@
-/* eslint-disable prettier/prettier */
-
 /**
  * Module dependencies.
  */
-function dev() { }
-const app = require('../app');
-// const debug = require('debug')('my-app:server');
-const http = require('http');
+function dev() {}
 
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+import app from '../app' // Assuming the app module is using ES6 export
+// import debug from 'debug'; // You can uncomment this line if using 'debug'
+import http from 'http'
 
-const server = http.createServer(app);
+const port = normalizePort(process.env.PORT || '3000')
+app.set('port', port)
+
+const server = http.createServer(app)
 
 server.listen(port, () => {
-    console.log("Server listening on port: " + port)
+  console.log(`Server listening on port: ${port}`)
 })
 
 function normalizePort(val: string) {
-    const port = parseInt(val, 10);
+  const port = parseInt(val, 10)
 
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
+  if (isNaN(port)) {
+    // named pipe
+    return val
+  }
 
-    if (port >= 0) {
-        // port number
-        return port;
-    }
+  if (port >= 0) {
+    // port number
+    return port
+  }
 
-    return false;
+  return false
 }
 
-dev();
+dev()
