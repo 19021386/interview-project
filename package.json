@@ -13,6 +13,8 @@
     "dev:undo": "npx sequelize-cli db:migrate:undo:all",
     "dev:migrate": "npx sequelize-cli db:migrate",
     "dev:seed": "npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all ",
+    "dev:generate-migration": "npx sequelize-cli migration:generate --name",
+    "dev:generate-seed": "npx sequelize-cli seed:generate --name",
     "test": "jest",
     "test:watch": "jest --watch"
   },
