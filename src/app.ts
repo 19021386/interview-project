@@ -3,62 +3,44 @@ require('dotenv').config()
 import express, { Express, NextFunction, Request, Response } from 'express'
 const cors = require('cors')
 
+const helmet = require('helmet')
+
 import { connectDB } from '@config/index'
 
-import User from 'src/db/models/User'
+import { reqLogger } from '@middleware/eventLogger'
+
+import { Error } from '@constants/interface'
+import { HttpException } from '@utils/httpException'
+import { errorLogger } from '@middleware/errorLogger'
 
 const cookieParser = require('cookie-parser')
 
 const app: Express = express()
 
-// Express built-in c
-app.use(express.json({ limit: '50mb' }))
-app.use(express.urlencoded({ extended: false, limit: '50mb' }))
-app.use(express.static('./src/public'))
+//logger
+app.use(reqLogger)
+
+// Express built-in middleware
+app.use(express.json({ limit: process.env.JSON_LIMIT }))
+app.use(express.urlencoded({ extended: false, limit: process.env.URL_ENCODED_LIMIT }))
 
 //cookieParser
 app.use(cookieParser())
 
-const whiteList = ['https://localhost:5173', 'http://localhost:5173']
-
+//cors
 const credentials = (req: Request, res: Response, next: NextFunction) => {
-  // Website you wish to allow to connect
-  const origin = req.headers.origin || ''
-  if (whiteList.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Credentials', 'true')
-  }
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
   next()
 }
 app.use(credentials)
 const corsOptions = {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  origin: (origin: string, callback: Function) => {
-    if (whiteList.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  optionsSuccessStatus: 200 // some browsers choke on 204
+  origin: '*',
+  optionsSuccessStatus: 200, // some browsers choke on 204
+  credentials: true
 }
 app.use(cors(corsOptions))
 
-app.get('/', (req, res) => {
-  res.send('Hello from Dockerized Express App!')
-})
-
-app.get('/users', async function (req, res) {
-  const users = await User.findAll({
-    include: [{ all: true, nested: true }],
-    order: [['id', 'ASC']],
-    attributes: {
-      exclude: ['password']
-    },
-    nest: true,
-    raw: false
-  })
-  res.status(200).json(users)
-})
+app.use(helmet())
 
 // catch 404 and forward to error handler
 app.use(function (req: Request, res: Response, next) {
@@ -66,8 +48,27 @@ app.use(function (req: Request, res: Response, next) {
 })
 
 connectDB()
-app.use(function (error: Error, req: Request, res: Response) {
-  res.status(404).json('Not Found')
+app.use(function (error: Error, req: Request, res: Response, next: NextFunction) {
+  errorLogger(error, req, res, next)
+  if (error instanceof HttpException) {
+    error.status = error.status || 500
+    res.status(error.status).json({
+      status: 'NG',
+      error: {
+        errCode: error.errCode,
+        message: error.message
+      }
+    })
+  } else {
+    res.status(500).json({
+      status: 'NG',
+      error: {
+        errCode: error.status || 500,
+        message: error.message
+      }
+    })
+  }
+  next()
 })
 
 module.exports = app

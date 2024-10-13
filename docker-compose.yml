@@ -6,8 +6,8 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "8080:8080"          # Expose the app on port 3000
-    command: yarn dev:start        # Use nodemon to start the app in development mode
+      - "8080:8080"
+    command: yarn dev:start
     environment:
       - NODE_ENV=development
 
