@@ -6,7 +6,7 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "8080:8080"
+      - '8080:8080'
     command: yarn dev:start
     environment:
       - NODE_ENV=development
@@ -20,6 +20,5 @@ services:
   #     - "3306:3306"
   #   volumes:
   #     - db_data:/var/lib/mysql
-
 # volumes:
 #   db_data:
