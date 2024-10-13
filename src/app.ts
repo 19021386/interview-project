@@ -50,7 +50,7 @@ const credentials = (req: Request, res: Response, next: NextFunction) => {
 app.use(credentials)
 const corsOptions = {
   origin: '*',
-  optionsSuccessStatus: 200, // some browsers choke on 204
+  optionsSuccessStatus: 200,
   credentials: true
 }
 app.use(cors(corsOptions))

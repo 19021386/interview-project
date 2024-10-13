@@ -1,31 +1,33 @@
-import { Teacher } from '@models/Teacher'
+import { Op } from 'sequelize'
 import { Student } from '@models/Student'
-import { HttpException } from '@utils/httpException'
-import { globalErrCode } from '@constants/errorCode'
+import { Teacher } from '@models/Teacher'
+import { sequelize } from '@config/index'
 
 export const getCommonStudentsService = async (teacherEmails: string | string[]) => {
   if (!Array.isArray(teacherEmails)) {
     teacherEmails = [teacherEmails]
   }
 
-  const teachers = await Teacher.findAll({
-    where: {
-      email: teacherEmails
-    },
-    include: {
-      model: Student,
-      attributes: ['email'],
-      through: { attributes: [] }
-    }
+  const teacherCount = teacherEmails.length
+
+  const commonStudents = await Student.findAll({
+    include: [
+      {
+        model: Teacher,
+        as: 'teachers',
+        attributes: [],
+        where: {
+          email: {
+            [Op.in]: teacherEmails
+          }
+        },
+        through: { attributes: [] }
+      }
+    ],
+    attributes: ['email'],
+    group: ['Student.email'],
+    having: sequelize.literal(`COUNT(DISTINCT "teachers"."email") = ${teacherCount}`)
   })
 
-  if (teachers.length !== teacherEmails.length) {
-    throw new HttpException(globalErrCode['TEACHER.0002'])
-  }
-
-  const studentLists = teachers.map((teacher) => teacher.students.map((student) => student.email))
-
-  const commonStudents = studentLists.reduce((a, b) => a.filter((c) => b.includes(c)))
-
-  return commonStudents
+  return commonStudents.map((student) => student.email)
 }
