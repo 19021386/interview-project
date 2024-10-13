@@ -1,13 +1,14 @@
-import { getCommonStudentsController } from '@controllers/teacherController/getCommonStudents' // Update with correct path
+import { getCommonStudentsController } from '@controllers/teacherController/getCommonStudents'
 import { getCommonStudentsService } from '@services/teacherService/getCommonStudents'
 import { handleJoiValidationError } from '@utils/joiValidationError'
 import { Request, Response, NextFunction } from 'express'
+import Joi from 'joi'
 
 jest.mock('@services/teacherService/getCommonStudents')
 jest.mock('@utils/joiValidationError')
 jest.mock('@config/index', () => ({
   sequelize: {
-    literal: jest.fn().mockReturnValue('COUNT(DISTINCT "teachers"."email")')
+    literal: jest.fn((literal) => literal)
   }
 }))
 
@@ -50,27 +51,40 @@ describe('getCommonStudentsController', () => {
     })
   })
 
-  it('should return validation error when Joi schema fails', async () => {
+  it('should handle Joi validation error', async () => {
     req.query = { teacher: 'invalidEmail' }
-    ;(handleJoiValidationError as jest.Mock).mockImplementation((error, response) => {
-      return response.status(400).json({ error: 'Invalid teacher email' })
+
+    const mockValidationError = new Joi.ValidationError(
+      '"teacher" must be a valid email',
+      [
+        {
+          message: '"teacher" must be a valid email',
+          path: ['teacher'],
+          type: 'string.email',
+          context: { label: 'teacher', value: 'invalidEmail' }
+        }
+      ],
+      {}
+    )
+
+    ;(handleJoiValidationError as jest.Mock).mockImplementation((error, res) => {
+      return res.status(400).json({ status: 'error', message: error.details[0].message })
     })
 
     await getCommonStudentsController(req as Request, res as Response, next)
 
-    expect(handleJoiValidationError).toHaveBeenCalled()
+    expect(handleJoiValidationError).toHaveBeenCalledWith(mockValidationError, res)
     expect(res.status).toHaveBeenCalledWith(400)
-    expect(res.json).toHaveBeenCalledWith({ error: 'Invalid teacher email' })
+    expect(res.json).toHaveBeenCalledWith({ status: 'error', message: '"teacher" must be a valid email' })
   })
 
-  it('should call next with error if service throws', async () => {
+  it('should call next with error if service throws an error', async () => {
     req.query = { teacher: ['teacher1@email.com'] }
     const mockError = new Error('Service error')
     ;(getCommonStudentsService as jest.Mock).mockRejectedValue(mockError)
 
     await getCommonStudentsController(req as Request, res as Response, next)
 
-    expect(getCommonStudentsService).toHaveBeenCalled()
     expect(next).toHaveBeenCalledWith(mockError)
   })
 })

@@ -1,6 +1,6 @@
 import { getCommonStudentsService } from '@services/teacherService/getCommonStudents'
 import { Student } from '@models/Student'
-import { Teacher } from '@models/Teacher' // Import Teacher model directly
+import { Teacher } from '@models/Teacher'
 import { sequelize } from '@config/index'
 import { Op } from 'sequelize'
 
