@@ -67,6 +67,7 @@ export const httpStatusCode = {
 
 export const globalErrCode = {
     "STUDENT.0001": { status: 404, errCode: "STUDENT.0001", message: 'Some Student Not Found' },
+    "STUDENT.0002": { status: 404, errCode: "STUDENT.0002", message: 'Student Not Found' },
 
     "TEACHER.0001": { status: 404, errCode: "TEACHER.0001", message: 'Teacher Not Found' },
     "TEACHER.0002": { status: 404, errCode: "TEACHER.0002", message: 'Some Teacher Not Found' },
