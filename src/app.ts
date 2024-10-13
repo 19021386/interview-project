@@ -14,6 +14,8 @@ import { connectDB } from '@config/index'
 
 import { reqLogger } from '@middleware/eventLogger'
 
+import initWebRoutes from '@routes/initWebRoutes'
+
 import { Error } from '@constants/interface'
 import { HttpException } from '@utils/httpException'
 import { errorLogger } from '@middleware/errorLogger'
@@ -54,6 +56,8 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(helmet())
+
+initWebRoutes(app)
 
 // catch 404 and forward to error handler
 app.use(function (req: Request, res: Response, next) {
