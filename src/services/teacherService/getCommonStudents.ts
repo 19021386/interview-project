@@ -3,7 +3,7 @@ import { Student } from '@models/Student'
 import { Teacher } from '@models/Teacher'
 import { sequelize } from '@config/index'
 
-export const getCommonStudentsService = async (teacherEmails: string[]) => {
+export const getCommonStudentsService = async (teacherEmails: string[] | string) => {
   if (!Array.isArray(teacherEmails)) {
     teacherEmails = [teacherEmails]
   }

@@ -13,7 +13,7 @@ export const getCommonStudentsController = async (req: Request, res: Response, n
     if (error) {
       return handleJoiValidationError(error, res)
     }
-    const teachers = req.query.teacher as string[]
+    const teachers = req.query.teacher as string[] | string
     const commonStudents = await getCommonStudentsService(teachers)
     return res.status(200).json({
       status: 'OK',
