@@ -1,9 +1,14 @@
 const createError = require('http-errors')
+
 require('dotenv').config()
+
 import express, { Express, NextFunction, Request, Response } from 'express'
+
 const cors = require('cors')
 
 const helmet = require('helmet')
+
+const rateLimit = require('express-rate-limit')
 
 import { connectDB } from '@config/index'
 
@@ -16,6 +21,14 @@ import { errorLogger } from '@middleware/errorLogger'
 const cookieParser = require('cookie-parser')
 
 const app: Express = express()
+
+//rate limiter
+const limiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 100,
+  message: 'Too many requests from this IP, please try again after 1 hour'
+})
+app.use(limiter)
 
 //logger
 app.use(reqLogger)
