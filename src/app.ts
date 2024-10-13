@@ -1,30 +1,23 @@
-const createError = require('http-errors')
-
-require('dotenv').config()
+import createError from 'http-errors'
+import dotenv from 'dotenv'
+dotenv.config() // Load environment variables
 
 import express, { Express, NextFunction, Request, Response } from 'express'
-
-const cors = require('cors')
-
-const helmet = require('helmet')
-
-const rateLimit = require('express-rate-limit')
+import cors from 'cors'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
+import cookieParser from 'cookie-parser'
 
 import { connectDB } from '@config/index'
-
 import { reqLogger } from '@middleware/eventLogger'
-
 import initWebRoutes from '@routes/initWebRoutes'
-
 import { Error } from '@constants/interface'
 import { HttpException } from '@utils/httpException'
 import { errorLogger } from '@middleware/errorLogger'
 
-const cookieParser = require('cookie-parser')
-
 const app: Express = express()
 
-//rate limiter
+// Rate limiter
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 100,
@@ -32,22 +25,23 @@ const limiter = rateLimit({
 })
 app.use(limiter)
 
-//logger
+// Logger
 app.use(reqLogger)
 
 // Express built-in middleware
 app.use(express.json({ limit: process.env.JSON_LIMIT }))
 app.use(express.urlencoded({ extended: false, limit: process.env.URL_ENCODED_LIMIT }))
 
-//cookieParser
+// cookieParser
 app.use(cookieParser())
 
-//cors
+// CORS configuration
 const credentials = (req: Request, res: Response, next: NextFunction) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   next()
 }
 app.use(credentials)
+
 const corsOptions = {
   origin: '*',
   optionsSuccessStatus: 200,
@@ -55,17 +49,22 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+// Helmet for securing HTTP headers
 app.use(helmet())
 
+// Initialize web routes
 initWebRoutes(app)
 
-// catch 404 and forward to error handler
-app.use(function (req: Request, res: Response, next) {
+// Catch 404 and forward to error handler
+app.use((req: Request, res: Response, next) => {
   next(createError(404))
 })
 
+// Connect to the database
 connectDB()
-app.use(function (error: Error, req: Request, res: Response, next: NextFunction) {
+
+// Error handling middleware
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   errorLogger(error, req, res, next)
   if (error instanceof HttpException) {
     error.status = error.status || 500
@@ -88,4 +87,4 @@ app.use(function (error: Error, req: Request, res: Response, next: NextFunction)
   next()
 })
 
-module.exports = app
+export default app

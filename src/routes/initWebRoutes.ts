@@ -7,6 +7,7 @@ import { getCommonStudentsController } from '@controllers/teacherController/getC
 import { suspendStudentController } from '@controllers/teacherController/suspendStudent'
 
 import { retrieveForNotificationsController } from '@controllers/teacherController/retrieveForNotifications'
+
 const initWebRoutes = (app: Express) => {
   // Create a base router to handle all routes under `/api`
   const apiRouter = Router()

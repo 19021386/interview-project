@@ -1,10 +1,11 @@
-const { format } = require('date-fns')
-const { v4: uuid } = require('uuid')
+import { format } from 'date-fns'
+import { v4 as uuid } from 'uuid'
 
 import { Request, Response, NextFunction } from 'express'
-const fs = require('fs')
-const fsPromises = require('fs').promises
-const path = require('path')
+
+import fs from 'fs'
+import { promises as fsPromises } from 'fs'
+import path from 'path'
 
 export const eventLogger = async (message: string, logName: string, next: NextFunction) => {
   const dateTime = `${format(new Date(), 'yyyyMMdd\tHH:mm:ss')}`
