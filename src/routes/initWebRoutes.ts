@@ -5,6 +5,8 @@ import { registerStudentsController } from '@controllers/teacherController/regis
 import { getCommonStudentsController } from '@controllers/teacherController/getCommonStudents'
 
 import { suspendStudentController } from '@controllers/teacherController/suspendStudent'
+
+import { retrieveForNotificationsController } from '@controllers/teacherController/retrieveForNotifications'
 const initWebRoutes = (app: Express) => {
   // Create a base router to handle all routes under `/api`
   const apiRouter = Router()
@@ -18,6 +20,8 @@ const initWebRoutes = (app: Express) => {
   apiRouter.get('/commonstudents', getCommonStudentsController)
 
   apiRouter.post('/suspend', suspendStudentController)
+
+  apiRouter.post('/retrievefornotifications', retrieveForNotificationsController)
 
   // Apply the `/api` prefix to all routes
   app.use('/api', apiRouter)
