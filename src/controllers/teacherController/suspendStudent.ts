@@ -5,7 +5,7 @@ export const suspendStudentController = async (req: Request, res: Response, next
   try {
     const { student }: { student: string } = req.body
     await suspendStudentService(student)
-    return res.status(204).send() // HTTP 204: No Content
+    return res.sendStatus(204)
   } catch (error) {
     return next(error)
   }

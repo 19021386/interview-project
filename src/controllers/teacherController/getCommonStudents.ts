@@ -6,7 +6,12 @@ export const getCommonStudentsController = async (req: Request, res: Response, n
   try {
     const teachers = req.query.teacher as string | string[]
     const commonStudents = await getCommonStudentsService(teachers)
-    return res.status(200).json({ students: commonStudents })
+    return res.status(200).json({
+      status: 'OK',
+      data: {
+        students: commonStudents
+      }
+    })
   } catch (error) {
     return next(error)
   }
