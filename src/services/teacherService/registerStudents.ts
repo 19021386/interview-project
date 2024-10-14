@@ -18,5 +18,5 @@ export async function registerStudentsService(teacherEmail: string, studentEmail
     throw new HttpException(globalErrCode['STUDENT.0001'])
   }
 
-  await teacher.$set('students', students) // Set the many-to-many relationship
+  await teacher.$add('students', students) // Add the many-to-many relationship
 }

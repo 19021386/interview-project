@@ -9,7 +9,7 @@ import rateLimit from 'express-rate-limit'
 import cookieParser from 'cookie-parser'
 
 import { connectDB } from '@config/index'
-import { reqLogger } from '@middleware/eventLogger'
+import { reqLogger } from '@middleware/requestLogger'
 import initWebRoutes from '@routes/initWebRoutes'
 import { Error } from '@constants/interface'
 import { HttpException } from '@utils/httpException'
