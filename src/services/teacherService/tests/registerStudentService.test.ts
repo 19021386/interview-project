@@ -25,7 +25,7 @@ describe('registerStudentsService', () => {
   })
 
   it('should throw an error if not all students are found', async () => {
-    const teacher = { $set: jest.fn() }
+    const teacher = { $add: jest.fn() }
     const teacherEmail = 'teacher1@email.com'
     const studentEmails = ['student1@email.com', 'student2@email.com']
 
@@ -42,7 +42,7 @@ describe('registerStudentsService', () => {
   })
 
   it('should set the students for the teacher when all students are found', async () => {
-    const teacher = { $set: jest.fn() }
+    const teacher = { $add: jest.fn() }
     const teacherEmail = 'teacher1@email.com'
     const studentEmails = ['student1@email.com', 'student2@email.com']
 
@@ -57,6 +57,6 @@ describe('registerStudentsService', () => {
     expect(Student.findAll).toHaveBeenCalledWith({
       where: { email: studentEmails }
     })
-    expect(teacher.$set).toHaveBeenCalledWith('students', mockStudents)
+    expect(teacher.$add).toHaveBeenCalledWith('students', mockStudents)
   })
 })
