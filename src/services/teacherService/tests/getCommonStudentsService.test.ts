@@ -40,7 +40,7 @@ describe('getCommonStudentsService', () => {
       ],
       attributes: ['email'],
       group: ['Student.email'],
-      having: sequelize.literal(`COUNT(DISTINCT "teachers"."email") = ${teacherEmails.length}`)
+      having: sequelize.literal(`COUNT(DISTINCT \`teachers\`.\`email\`) = ${teacherEmails.length}`)
     })
     expect(result).toEqual(['student1@email.com', 'student2@email.com'])
   })
@@ -65,7 +65,7 @@ describe('getCommonStudentsService', () => {
       ],
       attributes: ['email'],
       group: ['Student.email'],
-      having: sequelize.literal(`COUNT(DISTINCT "teachers"."email") = ${teacherEmails.length}`)
+      having: sequelize.literal(`COUNT(DISTINCT \`teachers\`.\`email\`) = ${teacherEmails.length}`)
     })
     expect(result).toEqual([])
   })
@@ -92,7 +92,7 @@ describe('getCommonStudentsService', () => {
       ],
       attributes: ['email'],
       group: ['Student.email'],
-      having: sequelize.literal(`COUNT(DISTINCT "teachers"."email") = 1`)
+      having: sequelize.literal(`COUNT(DISTINCT \`teachers\`.\`email\`) = 1`)
     })
     expect(result).toEqual(['student1@email.com'])
   })
