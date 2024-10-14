@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD [ "yarn", "dev:start" ]
+CMD [ "npm", "run", "dev:start" ]
