@@ -15,6 +15,8 @@ import { Error } from '@constants/interface'
 import { HttpException } from '@utils/httpException'
 import { errorLogger } from '@middleware/errorLogger'
 
+import swaggerDocs from '@utils/swagger'
+
 const app: Express = express()
 
 // Rate limiter
@@ -36,21 +38,24 @@ app.use(express.urlencoded({ extended: false, limit: process.env.URL_ENCODED_LIM
 app.use(cookieParser())
 
 // CORS configuration
-const credentials = (req: Request, res: Response, next: NextFunction) => {
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  next()
-}
-app.use(credentials)
+// const credentials = (req: Request, res: Response, next: NextFunction) => {
+//   res.setHeader('Access-Control-Allow-Credentials', 'true')
+//   next()
+// }
+// app.use(credentials)
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200,
-  credentials: true
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//   origin: '*',
+//   optionsSuccessStatus: 200,
+//   credentials: true
+// }
+app.use(cors())
 
 // Helmet for securing HTTP headers
 app.use(helmet())
+
+// Initialize Swagger documentation
+swaggerDocs(app)
 
 // Initialize web routes
 initWebRoutes(app)
