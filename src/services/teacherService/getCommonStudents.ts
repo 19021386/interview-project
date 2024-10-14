@@ -26,7 +26,7 @@ export const getCommonStudentsService = async (teacherEmails: string[] | string)
     ],
     attributes: ['email'],
     group: ['Student.email'],
-    having: sequelize.literal(`COUNT(DISTINCT "teachers"."email") = ${teacherCount}`)
+    having: sequelize.literal(`COUNT(DISTINCT \`teachers\`.\`email\`) = ${teacherCount}`) // Changed to backticks for MySQL
   })
 
   return commonStudents.map((student) => student.email)
