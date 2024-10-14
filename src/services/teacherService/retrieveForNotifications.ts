@@ -1,14 +1,14 @@
 import { Op } from 'sequelize'
 import { Teacher } from '@models/Teacher'
 import { Student } from '@models/Student'
-
 import { emailRegex } from '@constants/regex'
 
 export const retrieveForNotificationsService = async (
   teacherEmail: string,
   notificationText: string
 ): Promise<string[]> => {
-  const mentionedStudents = (notificationText.match(emailRegex) || []).map((email) => email.slice(1))
+  const mentionedStudents: string[] = (notificationText.match(emailRegex) || []).map((email: string) => email.slice(1))
+
   const students = await Student.findAll({
     include: [
       {
