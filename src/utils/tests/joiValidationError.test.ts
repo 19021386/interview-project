@@ -33,8 +33,11 @@ describe('handleJoiValidationError', () => {
     handleJoiValidationError(mockValidationError, res as Response)
     expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
-      status: 'error',
-      message: '"teacher" must be a valid email'
+      status: 'NG',
+      error: {
+        errCode: 400,
+        message: '"teacher" must be a valid email'
+      }
     })
   })
 
@@ -51,8 +54,11 @@ describe('handleJoiValidationError', () => {
     handleJoiValidationError(mockValidationError, res as Response)
     expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
-      status: 'error',
-      message: '"students" must contain at least 1 item'
+      status: 'NG',
+      error: {
+        errCode: 400,
+        message: '"students" must contain at least 1 item'
+      }
     })
   })
 })

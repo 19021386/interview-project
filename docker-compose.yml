@@ -10,11 +10,16 @@ services:
     command: sh -c "npm run dev:migrate && npm run dev:seed && npm run dev:start"
     environment:
       - NODE_ENV=development
+      - PORT=8080
       - DB_HOST=db
       - DB_USER=root
       - DB_PASSWORD=my_interview_password
       - DB_NAME=my_interview_database
+      - DB_DIALECT = mysql
       - DB_PORT=3306
+      - SERVER_URL=http://localhost:8080/
+      - JSON_LIMIT=50mb
+      - URL_ENCODED_LIMIT=50mb
     depends_on:
       db:
         condition: service_healthy
