@@ -74,19 +74,11 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof HttpException) {
     error.status = error.status || 500
     res.status(error.status).json({
-      status: 'NG',
-      error: {
-        errCode: error.errCode,
-        message: error.message
-      }
+      message: error.message
     })
   } else {
     res.status(500).json({
-      status: 'NG',
-      error: {
-        errCode: error.status || 500,
-        message: error.message
-      }
+      message: error.message
     })
   }
   next()

@@ -32,8 +32,7 @@ describe('retrieveForNotificationsController', () => {
     expect(retrieveForNotificationsService).toHaveBeenCalledWith('teacher1@email.com', 'Hello @student1@email.com')
     expect(res.status).toHaveBeenCalledWith(200)
     expect(res.json).toHaveBeenCalledWith({
-      status: 'OK',
-      data: { recipients: mockRecipients }
+      recipients: mockRecipients
     })
   })
 
@@ -54,14 +53,14 @@ describe('retrieveForNotificationsController', () => {
     )
 
     ;(handleJoiValidationError as jest.Mock).mockImplementation((error, res) => {
-      return res.status(400).json({ status: 'error', message: error.details[0].message })
+      return res.status(400).json({ message: error.details[0].message })
     })
 
     await retrieveForNotificationsController(req as Request, res as Response, next)
 
     expect(handleJoiValidationError).toHaveBeenCalledWith(mockValidationError, res)
     expect(res.status).toHaveBeenCalledWith(400)
-    expect(res.json).toHaveBeenCalledWith({ status: 'error', message: '"teacher" must be a valid email' })
+    expect(res.json).toHaveBeenCalledWith({ message: '"teacher" must be a valid email' })
   })
 
   it('should call next with error if retrieveForNotificationsService throws an error', async () => {

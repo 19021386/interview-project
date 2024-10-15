@@ -47,14 +47,14 @@ describe('suspendStudentController', () => {
     )
 
     ;(handleJoiValidationError as jest.Mock).mockImplementation((error, res) => {
-      return res.status(400).json({ status: 'error', message: error.details[0].message })
+      return res.status(400).json({ message: error.details[0].message })
     })
 
     await suspendStudentController(req as Request, res as Response, next)
 
     expect(handleJoiValidationError).toHaveBeenCalledWith(mockValidationError, res)
     expect(res.status).toHaveBeenCalledWith(400)
-    expect(res.json).toHaveBeenCalledWith({ status: 'error', message: '"student" must be a valid email' })
+    expect(res.json).toHaveBeenCalledWith({ message: '"student" must be a valid email' })
   })
 
   it('should call next with error if suspendStudentService throws', async () => {
