@@ -10,28 +10,28 @@ services:
     command: sh -c "npm run dev:migrate && npm run dev:seed && npm run dev:start"
     environment:
       - NODE_ENV=development
-#       - DB_HOST=db
-#       - DB_USER=root
-#       - DB_PASSWORD=my_interview_password
-#       - DB_NAME=my_interview_database
-#       - DB_PORT=3306
-#     depends_on:
-#       db:
-#         condition: service_healthy
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=my_interview_password
+      - DB_NAME=my_interview_database
+      - DB_PORT=3306
+    depends_on:
+      db:
+        condition: service_healthy
 
-#   db:
-#     image: mysql:8
-#     environment:
-#       MYSQL_ROOT_PASSWORD: my_interview_password
-#       MYSQL_DATABASE: my_interview_database
-#     volumes:
-#       - db_data:/var/lib/mysql
-#     healthcheck:
-#       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-#       start_period: 30s
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: my_interview_password
+      MYSQL_DATABASE: my_interview_database
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
-# volumes:
-#   db_data:
+volumes:
+  db_data:
