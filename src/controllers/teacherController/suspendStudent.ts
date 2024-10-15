@@ -5,7 +5,8 @@ import Joi from 'joi'
 
 const suspendStudentSchema = Joi.object({
   student: Joi.string().email().required()
-})
+}) // student field is required and must be a valid email string
+
 export const suspendStudentController = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { error } = suspendStudentSchema.validate(req.body)
