@@ -5,8 +5,6 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/bin/dev.js",
-    "lint": "eslint dist/**/*.js",
-    "format": "eslint dist/**/*.js --fix",
     "dev:start": "nodemon --legacy-watch -r tsconfig-paths/register src/bin/dev.ts",
     "dev:lint": "eslint src/**/*.ts",
     "dev:format": "eslint src/**/*.ts --fix",
