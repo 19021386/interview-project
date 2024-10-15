@@ -94,7 +94,7 @@ Before running the project, ensure you have the following installed on your mach
    Run the following command to build and start the containers:
 
    ```bash
-   docker-compose up --build
+   docker-compose up --build -d
    ```
 
    This command will:
@@ -160,7 +160,7 @@ Before running the project, ensure you have the following installed on your mach
    To execute the unit tests and generate a coverage report, run the following command:
 
    ```bash
-   npm run test
+   docker-compose exec app npm run test
    ```
 
    This command will:
