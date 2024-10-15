@@ -6,7 +6,7 @@ import Joi from 'joi'
 const retrieveForNotificationsSchema = Joi.object({
   teacher: Joi.string().email().required(),
   notification: Joi.string().required()
-})
+}) // both fields are required, teacher must be a valid email string, notification must be a string
 
 export const retrieveForNotificationsController = async (req: Request, res: Response, next: NextFunction) => {
   try {

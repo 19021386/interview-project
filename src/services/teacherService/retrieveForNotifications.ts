@@ -8,6 +8,7 @@ export const retrieveForNotificationsService = async (
   notificationText: string
 ): Promise<string[]> => {
   const mentionedStudents: string[] = (notificationText.match(emailRegex) || []).map((email: string) => email.slice(1))
+  // find all emails in the notification
 
   const students = await Student.findAll({
     include: [

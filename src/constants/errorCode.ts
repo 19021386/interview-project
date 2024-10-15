@@ -63,7 +63,7 @@ export const httpStatusCode = {
     508: { errCode: "508", message: 'LoopDetected' },
     510: { errCode: "510", message: 'NotExtended' },
     511: { errCode: "511", message: 'NetworkAuthenticationRequired' },
-}
+} // common http status codes
 
 export const globalErrCode = {
     "STUDENT.0001": { status: 404, errCode: "STUDENT.0001", message: 'Some Student Not Found' },
@@ -72,4 +72,4 @@ export const globalErrCode = {
     "TEACHER.0001": { status: 404, errCode: "TEACHER.0001", message: 'Teacher Not Found' },
     "TEACHER.0002": { status: 404, errCode: "TEACHER.0002", message: 'Some Teacher Not Found' },
 
-}
+} // custom codes

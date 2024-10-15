@@ -23,7 +23,7 @@ module.exports = {
           key: 'email'
         },
         onDelete: 'CASCADE',
-        primaryKey: true
+        primaryKey: true // Mark studentEmail as part of the primary key
       },
       createdAt: {
         allowNull: false,

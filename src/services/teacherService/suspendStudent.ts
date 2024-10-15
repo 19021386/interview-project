@@ -8,7 +8,8 @@ export const suspendStudentService = async (studentEmail: string): Promise<void>
   if (!student) {
     throw new HttpException(globalErrCode['STUDENT.0002'])
   }
-
-  student.suspended = true
-  await student.save()
+  if (student.suspended === false) {
+    student.suspended = true
+    await student.save()
+  }
 }
