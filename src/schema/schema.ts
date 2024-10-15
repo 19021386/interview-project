@@ -16,8 +16,8 @@
  *           items:
  *             type: string
  *           example:
- *             - studenttung@gmail.com
- *             - studentphuong@gmail.com
+ *             - studentjack@gmail.com
+ *             - studentirene@gmail.com
  *
  *     GetCommonStudentQuery:
  *       type: array
@@ -36,7 +36,7 @@
  *           type: array
  *           items:
  *             type: string
- *             example: ["studenttung@gmail.com", "studentphuong@gmail.com"]
+ *             example: ["studentjack@gmail.com", "studentirene@gmail.com"]
  *
  *     SuspendStudentRequest:
  *       type: object
@@ -47,7 +47,7 @@
  *           type: string
  *           format: email
  *           description: The email of the student to suspend.
- *           example: "studentphuong@gmail.com"
+ *           example: "studentirene@gmail.com"
  *
  *     RetrieveNotificationRequest:
  *       type: object
@@ -63,7 +63,7 @@
  *         notification:
  *           type: string
  *           description: The notification text, which may include email addresses of students to be notified.
- *           example: "Hello students! @studentquan@gmail.com @studentquang@gmail.com"
+ *           example: "Hello students! @studentjohn@gmail.com @studentlisa@gmail.com"
  *
  *     RetrieveNotificationResponse:
  *       type: object
@@ -72,5 +72,5 @@
  *           type: array
  *           items:
  *              type: string
- *              example: ["studenttung@gmail.com", "studentphuong@gmail.com", "studentquan@gmail.com", "studentquang@gmail.com"]
+ *              example: ["studentjack@gmail.com", "studentirene@gmail.com", "studentkevin@gmail.com", "studentjoe@gmail.com"]
  */

@@ -6,91 +6,91 @@ module.exports = {
   up: async (queryInterface: QueryInterface) => {
     return queryInterface.bulkInsert('Students', [
       {
-        email: 'studenttung@gmail.com',
+        email: 'studentjack@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentphuong@gmail.com',
+        email: 'studentbrandon@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studenttien@gmail.com',
+        email: 'studentalex@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentnguyet@gmail.com',
+        email: 'studenttravis@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentquang@gmail.com',
+        email: 'studentmay@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentviet@gmail.com',
+        email: 'studentirene@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentkhai@gmail.com',
+        email: 'studentchloe@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentkhanh@gmail.com',
+        email: 'studentjenny@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentkien@gmail.com',
+        email: 'studentlisa@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studenthoang@gmail.com',
+        email: 'studentrose@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentbinh@gmail.com',
+        email: 'studentjohn@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentminh@gmail.com',
+        email: 'studentkevin@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentquan@gmail.com',
+        email: 'studentisaac@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studentthuong@gmail.com',
+        email: 'studentstanley@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'studenthuy@gmail.com',
+        email: 'studentpeter@gmail.com',
         suspended: false,
         createdAt: new Date(),
         updatedAt: new Date()

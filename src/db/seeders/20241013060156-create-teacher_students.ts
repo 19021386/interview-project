@@ -7,25 +7,25 @@ module.exports = {
     return queryInterface.bulkInsert('TeacherStudents', [
       {
         teacherEmail: 'teacherken@gmail.com',
-        studentEmail: 'studenttung@gmail.com',
+        studentEmail: 'studentjack@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         teacherEmail: 'teacherken@gmail.com',
-        studentEmail: 'studentphuong@gmail.com',
+        studentEmail: 'studentirene@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         teacherEmail: 'teacherken@gmail.com',
-        studentEmail: 'studenthuy@gmail.com',
+        studentEmail: 'studentkevin@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         teacherEmail: 'teacherjoe@gmail.com',
-        studentEmail: 'studenttung@gmail.com',
+        studentEmail: 'studentjack@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       }
