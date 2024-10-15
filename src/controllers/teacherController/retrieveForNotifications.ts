@@ -18,10 +18,7 @@ export const retrieveForNotificationsController = async (req: Request, res: Resp
     const { teacher, notification }: { teacher: string; notification: string } = req.body
     const recipients: string[] = await retrieveForNotificationsService(teacher, notification)
     return res.status(200).json({
-      status: 'OK',
-      data: {
-        recipients: recipients
-      }
+      recipients: recipients
     })
   } catch (error) {
     return next(error)

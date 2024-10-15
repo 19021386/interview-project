@@ -1,4 +1,3 @@
-// jest.config.js
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -6,10 +5,13 @@ module.exports = {
   coverageDirectory: 'coverage',
   testMatch: ['**/tests/**/*.test.ts'],
   moduleFileExtensions: ['ts', 'js'], // Resolve both TypeScript and JavaScript files
-  globals: {
-    'ts-jest': {
-      isolatedModules: true // Improve performance for large projects
-    }
+  transform: {
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        isolatedModules: true // Improve performance for large projects
+      }
+    ]
   },
   moduleNameMapper: {
     '^@services/(.*)$': '<rootDir>/src/services/$1',

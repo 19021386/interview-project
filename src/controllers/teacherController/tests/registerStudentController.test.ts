@@ -67,7 +67,7 @@ describe('registerStudentsController', () => {
 
     ;(registerStudentsService as jest.Mock).mockResolvedValue(undefined)
     ;(handleJoiValidationError as jest.Mock).mockImplementation((error, res) => {
-      return res.status(400).json({ status: 'error', message: error.details[0].message })
+      return res.status(400).json({ message: error.details[0].message })
     })
 
     await registerStudentsController(req as Request, res as Response, next)
@@ -75,7 +75,6 @@ describe('registerStudentsController', () => {
     expect(handleJoiValidationError).toHaveBeenCalledWith(mockValidationError, res)
     expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
-      status: 'error',
       message: '"teacher" must be a valid email'
     })
   })
@@ -101,7 +100,7 @@ describe('registerStudentsController', () => {
 
     ;(registerStudentsService as jest.Mock).mockResolvedValue(undefined)
     ;(handleJoiValidationError as jest.Mock).mockImplementation((error, res) => {
-      return res.status(400).json({ status: 'error', message: error.details[0].message })
+      return res.status(400).json({ message: error.details[0].message })
     })
 
     await registerStudentsController(req as Request, res as Response, next)
@@ -109,7 +108,6 @@ describe('registerStudentsController', () => {
     expect(handleJoiValidationError).toHaveBeenCalledWith(mockValidationError, res)
     expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
-      status: 'error',
       message: '"students" must contain at least 1 items'
     })
   })

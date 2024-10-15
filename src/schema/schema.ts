@@ -32,17 +32,11 @@
  *     CommonStudentsResponse:
  *       type: object
  *       properties:
- *         status:
- *           type: string
- *           example: "OK"
- *         data:
- *           type: object
- *           properties:
- *             students:
- *               type: array
- *               items:
- *                 type: string
- *               example: ["studenttung@gmail.com", "studentphuong@gmail.com"]
+ *         students:
+ *           type: array
+ *           items:
+ *             type: string
+ *             example: ["studenttung@gmail.com", "studentphuong@gmail.com"]
  *
  *     SuspendStudentRequest:
  *       type: object
@@ -74,15 +68,9 @@
  *     RetrieveNotificationResponse:
  *       type: object
  *       properties:
- *         status:
- *           type: string
- *           example: "OK"
- *         data:
- *           type: object
- *           properties:
- *             recipients:
- *               type: array
- *               items:
- *                 type: string
- *               example: ["studenttung@gmail.com", "studentphuong@gmail.com", "studentquan@gmail.com", "studentquang@gmail.com"]
+ *         recipients:
+ *           type: array
+ *           items:
+ *              type: string
+ *              example: ["studenttung@gmail.com", "studentphuong@gmail.com", "studentquan@gmail.com", "studentquang@gmail.com"]
  */
