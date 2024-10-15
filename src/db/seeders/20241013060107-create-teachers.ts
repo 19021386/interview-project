@@ -17,17 +17,17 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        email: 'teachertuananh@gmail.com',
+        email: 'teacherkein@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'teacherquy@gmail.com',
+        email: 'teacherzoe@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        email: 'teacherhai@gmail.com',
+        email: 'teacherash@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date()
       }
